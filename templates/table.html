@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<h1> Data : </h1>
+
+
+<h1> Data : </h1>
+<head>
+  <style>
+    input.larger {
+      width: 20px;
+      height: 20px;
+      padding-right: 20px;
+    }
+  </style>
+</head>
+
+<h2 style="text-align:center">HSN data & Product Specifications</h2> 
+<form action="/labels" method="POST" enctype="multipart/form-data">
+  <table class="table table-light table-striped">
+    <thead class="thead-dark">
+      <tr>
+        {% for i in range(0, df.columns|length) %}
+        <th>{{ df.columns[i]}} </th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      
+        {% for i in range(0, df.shape[0]) %}
+        <tr>
+          {% for j in range(0, df.shape[1]) %}
+          {%if j == 1 %}
+          
+          <td> <input type="checkbox" class="larger" id="{{df.iloc[i][j]}}" name="{{df.iloc[i][j]}}" value='True'>
+            <label for= "{{df.iloc[i][j]}}" >{{df.iloc[i][j]}} </label><br> 
+          </td>
+        
+          {% else %}
+          <td>{{df.iloc[i][j]}}</td>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+      </tr>
+
+    </tbody>
+  </table>
+
+      <button class="btn btn-success btn-lg float-left" type="submit">Submit</button>
+  </form>
+  
+  <!-- <div style="text-align:center">
+
+    <a href= "/return-files/Quantity.xlsx" download="Quantity.xlsx"> 
+        <button type="button">Download this file</button> 
+        </a>
+    
+    </div>
+</div> -->
+{% endblock %}
+

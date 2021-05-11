@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+
+{% block body %}
+
+
+  <h2 style="text-align:center">HSN data & Product Specifications</h2> 
+  
+    
+    <table class="table table-light table-striped">
+      <thead class="thead-dark">
+        <tr>
+          {% for i in range(0, df.columns|length) %}
+          <th>{{ df.columns[i]}} </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        
+          {% for i in range(0, df.shape[0]) %}
+          <tr>
+            {% for j in range(0, df.shape[1]) %}
+            
+            <td>{{df.iloc[i][j]}}</td>
+          
+            {% endfor %}
+            {% endfor %}
+            
+          
+        </tr>
+  
+      </tbody>
+    </table>
+    <!-- <input type="submit" value="Submit"> -->
+    <form action="/" class="inline">
+      <button class="btn btn-success btn-lg float-left mx-1" type="submit">Submit</button>
+      <a href="{{ url_for('download_report') }}" class="btn mx-1"><i class="fa fa-download"></i> Download</a>
+  </form>
+  
+  
+    
+   <!-- 
+  <div style="text-align:center">
+
+    <a href= "{{ url_for('download_report') }}"> 
+        <button type="button">Download this file</button> 
+        </a>
+    
+    </div>
+</div> 
+-->
+  {% endblock %}
+
+
+
+ 
