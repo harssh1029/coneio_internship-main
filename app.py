@@ -152,7 +152,17 @@ def download_report():
     output.seek(0)
     return Response(output, mimetype="text/csv", headers={"Content-Disposition":"attachment;filename=employee_report.csv"})
         
-
+@app.route('/return-files/<filename>')
+def return_files_tut(filename):
+    x=filename
+    out_loc =  out_loc =  r'C:\Users\dell\Downloads'
+    file_path = out_loc + filename
+    return Response(
+       df.to_csv(),
+       mimetype="text/csv",
+       headers={"Content-disposition":
+       f"attachment; filename={x}.csv"})
+    # return send_file(file_path, as_attachment=True, attachment_filename='')
 
 
 # Download API
